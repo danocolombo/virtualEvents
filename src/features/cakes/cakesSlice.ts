@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '@/store';
-import { fetchCount } from './cakesAPI';
+import { fetchCount, getDefaultValue } from './cakesAPI';
 
 export interface CakesState {
     inventory: number;
@@ -21,6 +21,14 @@ export const incrementCakesAsync = createAsyncThunk(
     'cakes/fetchCount',
     async (amount: number) => {
         const response = await fetchCount(amount);
+        // The value we return becomes the `fulfilled` action payload
+        return response.data;
+    }
+);
+export const resetCakesInventory = createAsyncThunk(
+    'cakes/getDefaultValue',
+    async (amount: number) => {
+        const response = await getDefaultValue();
         // The value we return becomes the `fulfilled` action payload
         return response.data;
     }
@@ -58,6 +66,16 @@ export const cakesSlice = createSlice({
                 state.inventory += action.payload;
             })
             .addCase(incrementCakesAsync.rejected, (state) => {
+                state.status = 'failed';
+            })
+            .addCase(resetCakesInventory.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(resetCakesInventory.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.inventory = action.payload;
+            })
+            .addCase(resetCakesInventory.rejected, (state) => {
                 state.status = 'failed';
             });
     },

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '@/store';
-import { fetchCount } from './piesAPI';
+import { fetchCount, getDefaultValue } from './piesAPI';
 
 export interface PiesState {
     inventory: number;
@@ -21,6 +21,14 @@ export const incrementPiesAsync = createAsyncThunk(
     'pies/fetchCount',
     async (amount: number) => {
         const response = await fetchCount(amount);
+        // The value we return becomes the `fulfilled` action payload
+        return response.data;
+    }
+);
+export const resetPiesInventory = createAsyncThunk(
+    'pies/getDefaultValue',
+    async (amount: number) => {
+        const response = await getDefaultValue();
         // The value we return becomes the `fulfilled` action payload
         return response.data;
     }
@@ -58,6 +66,16 @@ export const piesSlice = createSlice({
                 state.inventory += action.payload;
             })
             .addCase(incrementPiesAsync.rejected, (state) => {
+                state.status = 'failed';
+            })
+            .addCase(resetPiesInventory.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(resetPiesInventory.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.inventory = action.payload;
+            })
+            .addCase(resetPiesInventory.rejected, (state) => {
                 state.status = 'failed';
             });
     },

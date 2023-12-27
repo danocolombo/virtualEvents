@@ -1,31 +1,46 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useAppSelector } from '@/hooks';
-import { getCakesState } from '@/features/cakes/cakesSlice';
-import { getPiesState } from '@/features/pies/piesSlice';
+import { useAppSelector, useAppDispatch } from '@/hooks';
+import {
+    getCakesState,
+    incrementCakes,
+    decrementCakes,
+    resetCakesInventory,
+} from '@/features/cakes/cakesSlice';
+import {
+    getPiesState,
+    incrementPies,
+    decrementPies,
+    resetPiesInventory,
+} from '@/features/pies/piesSlice';
 
 const TestScreen = () => {
     const cakes = useAppSelector(getCakesState);
     const pies = useAppSelector(getPiesState);
+    const dispatch = useAppDispatch();
 
     const handleSellCake = () => {
-        console.log('sell cake');
+        if (cakes.inventory > 0) {
+            dispatch(decrementCakes());
+        }
     };
     const handleBakeCake = () => {
-        console.log('bake cake');
+        dispatch(incrementCakes());
     };
     const handleResetCakes = () => {
-        console.log('reset cakes');
+        dispatch(resetCakesInventory(0));
     };
     const handleSellPie = () => {
-        console.log('sell pie');
+        if (pies.inventory > 0) {
+            dispatch(decrementPies());
+        }
     };
     const handleBakePie = () => {
-        console.log('bake pie');
+        dispatch(incrementPies());
     };
     const handleResetPies = () => {
-        console.log('reset pies');
+        dispatch(resetPiesInventory(0));
     };
     return (
         <SafeAreaView style={styles.container}>
@@ -97,7 +112,9 @@ const TestScreen = () => {
                 </Pressable>
             </View>
             <View>
-                <Text>Resetting will simulate REST call (async/await)</Text>
+                <Text style={styles.disclosureText}>
+                    Resetting will simulate REST call (async/await)
+                </Text>
             </View>
         </SafeAreaView>
     );
@@ -163,5 +180,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         color: '#ffffff',
+    },
+    disclosureText: {
+        paddingVertical: 10,
+        fontFamily: 'roboto',
+        fontSize: 14,
+        color: 'black',
     },
 });
