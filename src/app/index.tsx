@@ -1,12 +1,14 @@
-import { RootState } from '@/store';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { useAppSelector } from '@/hooks';
-import { getStatus } from '@/features/counter/counterSlice';
-import { Roboto_700Bold } from '@expo-google-fonts/roboto';
+import { getCakesStatus, getCakeInventory } from '@/features/cakes/cakesSlice';
+import { getPieInventory, getPiesStatus } from '@/features/pies/piesSlice';
 const HomeScreen = () => {
-    const reduxStatus = useAppSelector(getStatus);
+    const reduxCakesStatus = useAppSelector(getCakesStatus);
+    const reduxPiesStatus = useAppSelector(getPiesStatus);
+    const inventoryCakesValue = useAppSelector(getCakeInventory);
+    const inventoryPiesValue = useAppSelector(getPieInventory);
     return (
         <SafeAreaView style={styles.container}>
             <Stack.Screen options={{ title: 'Main Screen' }} />
@@ -24,13 +26,29 @@ const HomeScreen = () => {
                 <Text style={styles.item}>Expo Typescript Aliases</Text>
                 <Text style={styles.item}>src/app starting folder</Text>
                 <Text style={styles.item}>Google Fonts</Text>
+                <Text style={styles.item}>Reduxjs.Toolkit</Text>
             </View>
-            <View style={styles.statusContainer}>
-                <Text style={{ fontSize: 12 }}>Redux (counter) status: </Text>
-                <Text style={{ fontFamily: 'robotoBoldItalic' }}>
-                    {reduxStatus}
-                </Text>
+            <View style={styles.reduxContainer}>
+                <View style={styles.inventoryContainer}>
+                    <Text style={{ fontSize: 12 }}>Inventory (cakes): </Text>
+                    <Text style={{ fontFamily: 'robotoBoldItalic' }}>
+                        {inventoryCakesValue}
+                    </Text>
+                </View>
+                <View style={styles.inventoryContainer}>
+                    <Text style={{ fontSize: 12 }}>Inventory (pies): </Text>
+                    <Text style={{ fontFamily: 'robotoBoldItalic' }}>
+                        {inventoryPiesValue}
+                    </Text>
+                </View>
+                <View style={styles.statusContainer}>
+                    <Text style={{ fontSize: 12 }}>Redux status: </Text>
+                    <Text style={{ fontFamily: 'robotoBoldItalic' }}>
+                        {reduxCakesStatus && reduxPiesStatus}
+                    </Text>
+                </View>
             </View>
+
             <StatusBar style='auto' />
         </SafeAreaView>
     );
@@ -55,11 +73,22 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'robotoThin',
     },
+    reduxContainer: {
+        paddingVertical: 10,
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: 'grey',
+        borderRadius: 10,
+        marginTop: 15,
+        padding: 15,
+    },
+    inventoryContainer: {
+        flexDirection: 'row',
+    },
     statusContainer: {
         flexDirection: 'row',
-        paddingVertical: 20,
+        // paddingVertical: 20,
         // marginTop: 'auto',
-        justifyContent: 'center',
+        // justifyContent: 'center',
     },
 });
 export default HomeScreen;
