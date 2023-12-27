@@ -6,14 +6,14 @@ import {
     getCakesState,
     incrementCakes,
     decrementCakes,
-    resetCakesInventory,
 } from '@/features/cakes/cakesSlice';
+import { resetCakesInventory } from '@/features/cakes/cakesThunks';
 import {
     getPiesState,
     incrementPies,
     decrementPies,
-    resetPiesInventory,
 } from '@/features/pies/piesSlice';
+import { resetPiesInventory } from '@/features/pies/piesThunks';
 
 const TestScreen = () => {
     const cakes = useAppSelector(getCakesState);

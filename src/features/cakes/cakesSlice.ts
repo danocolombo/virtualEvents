@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '@/store';
-import { fetchCount, getDefaultValue } from './cakesAPI';
+import { incrementCakesAsync, resetCakesInventory } from './cakesThunks';
 
 export interface CakesState {
     inventory: number;
@@ -11,28 +11,6 @@ const initialState: CakesState = {
     inventory: 10,
     status: 'idle',
 };
-
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched. Thunks are
-// typically used to make async requests.
-export const incrementCakesAsync = createAsyncThunk(
-    'cakes/fetchCount',
-    async (amount: number) => {
-        const response = await fetchCount(amount);
-        // The value we return becomes the `fulfilled` action payload
-        return response.data;
-    }
-);
-export const resetCakesInventory = createAsyncThunk(
-    'cakes/getDefaultValue',
-    async (amount: number) => {
-        const response = await getDefaultValue();
-        // The value we return becomes the `fulfilled` action payload
-        return response.data;
-    }
-);
 
 export const cakesSlice = createSlice({
     name: 'cakes',
