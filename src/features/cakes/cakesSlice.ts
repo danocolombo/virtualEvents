@@ -70,6 +70,7 @@ export const { incrementCakes, decrementCakes, incrementCakesByAmount } =
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const getCakeInventory = (state: RootState) => state.cakes.inventory;
+export const getCakesState = (state: RootState) => state.cakes;
 export const getCakesStatus = (state: RootState) => state.cakes.status;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
@@ -77,8 +78,8 @@ export const getCakesStatus = (state: RootState) => state.cakes.status;
 export const incrementCakesIfOdd =
     (amount: number): AppThunk =>
     (dispatch, getState) => {
-        const currentValue = getCakeInventory(getState());
-        if (currentValue % 2 === 1) {
+        const currentValue = getCakesState(getState());
+        if (currentValue.inventory % 2 === 1) {
             dispatch(incrementCakesByAmount(amount));
         }
     };

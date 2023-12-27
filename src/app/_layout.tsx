@@ -52,6 +52,7 @@ export default function RootLayout() {
                     name='index'
                     options={{ title: 'Default Title' }}
                 />
+                <Stack.Screen name='test' options={{ title: 'Redux Test' }} />
             </Stack>
         </Provider>
     );

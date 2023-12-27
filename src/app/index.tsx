@@ -1,14 +1,19 @@
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import {
+    Image,
+    StyleSheet,
+    Text,
+    View,
+    SafeAreaView,
+    Pressable,
+} from 'react-native';
 import { useAppSelector } from '@/hooks';
-import { getCakesStatus, getCakeInventory } from '@/features/cakes/cakesSlice';
-import { getPieInventory, getPiesStatus } from '@/features/pies/piesSlice';
+import { getCakesState } from '@/features/cakes/cakesSlice';
+import { getPiesState } from '@/features/pies/piesSlice';
 const HomeScreen = () => {
-    const reduxCakesStatus = useAppSelector(getCakesStatus);
-    const reduxPiesStatus = useAppSelector(getPiesStatus);
-    const inventoryCakesValue = useAppSelector(getCakeInventory);
-    const inventoryPiesValue = useAppSelector(getPieInventory);
+    const pies = useAppSelector(getPiesState);
+    const cakes = useAppSelector(getCakesState);
     return (
         <SafeAreaView style={styles.container}>
             <Stack.Screen options={{ title: 'Main Screen' }} />
@@ -32,23 +37,29 @@ const HomeScreen = () => {
                 <View style={styles.inventoryContainer}>
                     <Text style={{ fontSize: 12 }}>Inventory (cakes): </Text>
                     <Text style={{ fontFamily: 'robotoBoldItalic' }}>
-                        {inventoryCakesValue}
+                        {cakes.inventory}
                     </Text>
                 </View>
                 <View style={styles.inventoryContainer}>
                     <Text style={{ fontSize: 12 }}>Inventory (pies): </Text>
                     <Text style={{ fontFamily: 'robotoBoldItalic' }}>
-                        {inventoryPiesValue}
+                        {pies.inventory}
                     </Text>
                 </View>
                 <View style={styles.statusContainer}>
                     <Text style={{ fontSize: 12 }}>Redux status: </Text>
                     <Text style={{ fontFamily: 'robotoBoldItalic' }}>
-                        {reduxCakesStatus && reduxPiesStatus}
+                        {cakes.status && pies.status}
                     </Text>
                 </View>
             </View>
-
+            <Link href={'test'} asChild>
+                <Pressable>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Test Redux</Text>
+                    </View>
+                </Pressable>
+            </Link>
             <StatusBar style='auto' />
         </SafeAreaView>
     );
@@ -89,6 +100,16 @@ const styles = StyleSheet.create({
         // paddingVertical: 20,
         // marginTop: 'auto',
         // justifyContent: 'center',
+    },
+    button: {
+        backgroundColor: 'blue',
+        padding: 10,
+        margin: 5,
+        borderRadius: 10,
+    },
+    buttonText: {
+        color: 'white',
+        fontFamily: 'robotoBold',
     },
 });
 export default HomeScreen;
