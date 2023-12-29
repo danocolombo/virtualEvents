@@ -2,6 +2,7 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchCount, getDefaultValue } from './cakesAPI';
+import { OrderType, CustomerType } from '@/types';
 
 // The function below is called a thunk and allows us to perform async logic.
 // It can be dispatched like a regular action: `dispatch(incrementCakesAsync(10))`.
@@ -23,5 +24,29 @@ export const resetCakesInventory = createAsyncThunk(
         const response = await getDefaultValue();
         // The value we return becomes the `fulfilled` action payload
         return response.data;
+    }
+);
+/*
+    orderCake is called with dispatch from function component, passing
+    in a OrderType.
+
+    cakes/completeOrder are referencing 'cakes' which is the slice name
+    and 'completeOrder is the name for the passed in value.
+
+    The function can do whatever it needs to do, but the return value 
+    is passed to the extraReducer in the slice as action.payload.
+    
+*/
+export const orderCake = createAsyncThunk(
+    'cakes/completeOrder',
+    async (completeOrder: OrderType) => {
+        const orderId = Math.random().toString();
+        const newOrder = {
+            id: orderId,
+            customer: completeOrder.customer.firstName,
+            item: completeOrder.name,
+        };
+        console.log('THUNK order:\n', newOrder);
+        return newOrder;
     }
 );

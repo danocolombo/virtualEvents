@@ -1,14 +1,25 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '@/store';
-import { incrementCakesAsync, resetCakesInventory } from './cakesThunks';
+import {
+    incrementCakesAsync,
+    resetCakesInventory,
+    orderCake,
+} from './cakesThunks';
 
+type OrderType = {
+    id: String;
+    customer: String;
+    item: String;
+};
 export interface CakesState {
     inventory: number;
+    orders: OrderType[];
     status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: CakesState = {
     inventory: 10,
+    orders: [],
     status: 'idle',
 };
 
@@ -46,11 +57,28 @@ export const cakesSlice = createSlice({
             .addCase(incrementCakesAsync.rejected, (state) => {
                 state.status = 'failed';
             })
+            .addCase(orderCake.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(orderCake.fulfilled, (state, action) => {
+                // Here, you can access the payload of the fulfilled action
+                const newOrder = action.payload;
+                console.log('slice fulfil... order:\n', action.payload);
+                // Update the state with the new order using immer
+                state.orders.push(newOrder);
+                console.log('resulting orders:\n', state.orders);
+                state.status = 'idle';
+            })
+            .addCase(orderCake.rejected, (state, action) => {
+                state.status = 'failed';
+                // state.error = action.error.message;
+            })
             .addCase(resetCakesInventory.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(resetCakesInventory.fulfilled, (state, action) => {
                 state.status = 'idle';
+                state.orders = [];
                 state.inventory = action.payload;
             })
             .addCase(resetCakesInventory.rejected, (state) => {
@@ -68,6 +96,7 @@ export const { incrementCakes, decrementCakes, incrementCakesByAmount } =
 export const getCakeInventory = (state: RootState) => state.cakes.inventory;
 export const getCakesState = (state: RootState) => state.cakes;
 export const getCakesStatus = (state: RootState) => state.cakes.status;
+export const getCakeOrders = (state: RootState) => state.cakes.orders;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

@@ -6,17 +6,22 @@ import {
     getCakesState,
     incrementCakes,
     decrementCakes,
+    getCakeOrders,
 } from '@/features/cakes/cakesSlice';
-import { resetCakesInventory } from '@/features/cakes/cakesThunks';
+import { orderCake, resetCakesInventory } from '@/features/cakes/cakesThunks';
 import {
     getPiesState,
     incrementPies,
     decrementPies,
 } from '@/features/pies/piesSlice';
+import { CustomerType, OrderType } from '@/types';
+
 import { resetPiesInventory } from '@/features/pies/piesThunks';
+import { useDispatch } from 'react-redux';
 
 const TestScreen = () => {
     const cakes = useAppSelector(getCakesState);
+    const cakeOrders = useAppSelector(getCakeOrders);
     const pies = useAppSelector(getPiesState);
     const dispatch = useAppDispatch();
 
@@ -42,6 +47,20 @@ const TestScreen = () => {
     const handleResetPies = () => {
         dispatch(resetPiesInventory(0));
     };
+    const handleCakeOrder = () => {
+        const id = Math.random().toString();
+        const customer: CustomerType = {
+            id: id,
+            firstName: 'Bob',
+            lastName: 'Smith',
+        };
+        const order: OrderType = {
+            id: id,
+            customer: customer,
+            name: 'Chocolate',
+        };
+        dispatch(orderCake(order));
+    };
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.intro}>
@@ -53,6 +72,9 @@ const TestScreen = () => {
                         <Text style={styles.subTitle}>Cakes</Text>
                         <Text style={[styles.text, styles.featureData]}>
                             Inventory: {cakes.inventory}
+                        </Text>
+                        <Text style={[styles.text, styles.featureData]}>
+                            Orders: {cakeOrders.length}
                         </Text>
                         <Text style={[styles.text, styles.featureData]}>
                             Status: {cakes.status}
@@ -114,6 +136,19 @@ const TestScreen = () => {
             <View>
                 <Text style={styles.disclosureText}>
                     Resetting will simulate REST call (async/await)
+                </Text>
+            </View>
+            <View style={styles.actionsContainer}>
+                <Pressable
+                    style={styles.actionsButton}
+                    onPress={() => handleCakeOrder()}
+                >
+                    <Text style={[styles.buttonText]}>Order Cake</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Text style={styles.disclosureText}>
+                    Orders will insert an order into Orders array
                 </Text>
             </View>
         </SafeAreaView>
