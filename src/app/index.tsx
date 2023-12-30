@@ -60,6 +60,13 @@ const HomeScreen = () => {
                     </View>
                 </Pressable>
             </Link>
+            <Link href={'forms/order'} asChild>
+                <Pressable>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Order Form</Text>
+                    </View>
+                </Pressable>
+            </Link>
             <StatusBar style='auto' />
         </SafeAreaView>
     );
