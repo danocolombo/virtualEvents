@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import React from 'react';
 
-const ScienceScreen = () => {
+const SubjectsScreen = () => {
     return (
         <SafeAreaView
             style={{
@@ -11,14 +11,14 @@ const ScienceScreen = () => {
             }}
         >
             <View>
-                <Text style={styles.title}>Science Screen</Text>
-                <Text style={styles.text}>Something to think about...</Text>
+                <Text style={styles.title}>Subjects Screen</Text>
+                <Text style={styles.text}>Checkout all our subjects!!!</Text>
             </View>
         </SafeAreaView>
     );
 };
 
-export default ScienceScreen;
+export default SubjectsScreen;
 
 const styles = StyleSheet.create({
     title: {

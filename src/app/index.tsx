@@ -67,6 +67,13 @@ const HomeScreen = () => {
                     </View>
                 </Pressable>
             </Link>
+            <Link href={'subjects'} asChild>
+                <Pressable>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Subjects</Text>
+                    </View>
+                </Pressable>
+            </Link>
             <StatusBar style='auto' />
         </SafeAreaView>
     );
