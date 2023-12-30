@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { store } from '@/store';
+import { Provider } from 'react-redux';
 import {
     useFonts,
     Roboto_400Regular,
@@ -40,12 +42,18 @@ export default function RootLayout() {
         return null;
     }
     return (
-        <Stack
-            screenOptions={{
-                headerStyle: { backgroundColor: 'lightgrey' },
-            }}
-        >
-            <Stack.Screen name='index' options={{ title: 'Default Title' }} />
-        </Stack>
+        <Provider store={store}>
+            <Stack
+                screenOptions={{
+                    headerStyle: { backgroundColor: 'lightgrey' },
+                }}
+            >
+                <Stack.Screen
+                    name='index'
+                    options={{ title: 'Default Title' }}
+                />
+                <Stack.Screen name='test' options={{ title: 'Redux Test' }} />
+            </Stack>
+        </Provider>
     );
 }
