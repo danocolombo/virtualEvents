@@ -41,11 +41,13 @@ export default function CustomDrawerContent(props: any) {
                         Hardy University
                     </Text>
                 </View>
-                <DrawerItemList {...props} />
-                <DrawerItem
-                    label={'Quit'}
-                    onPress={() => router.replace('/')}
-                />
+                <View style={{ backgroundColor: '#ffffff', paddingTop: 10 }}>
+                    <DrawerItemList {...props} />
+                    <DrawerItem
+                        label={'Quit'}
+                        onPress={() => router.replace('/')}
+                    />
+                </View>
             </DrawerContentScrollView>
             <View
                 style={{
