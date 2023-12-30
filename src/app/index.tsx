@@ -74,6 +74,13 @@ const HomeScreen = () => {
                     </View>
                 </Pressable>
             </Link>
+            <Link href={'classes'} asChild>
+                <Pressable>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Classes</Text>
+                    </View>
+                </Pressable>
+            </Link>
             <StatusBar style='auto' />
         </SafeAreaView>
     );
@@ -117,9 +124,10 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: 'blue',
-        padding: 10,
-        margin: 5,
-        borderRadius: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        margin: 2,
+        borderRadius: 5,
     },
     buttonText: {
         color: 'white',
