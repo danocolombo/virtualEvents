@@ -60,10 +60,10 @@ const HomeScreen = () => {
                     </View>
                 </Pressable>
             </Link>
-            <Link href={'forms/order'} asChild>
+            <Link href={'forms'} asChild>
                 <Pressable>
                     <View style={styles.button}>
-                        <Text style={styles.buttonText}>Order Form</Text>
+                        <Text style={styles.buttonText}>Form Samples</Text>
                     </View>
                 </Pressable>
             </Link>
