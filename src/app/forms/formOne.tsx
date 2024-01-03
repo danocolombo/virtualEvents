@@ -3,9 +3,18 @@ import { Stack } from 'expo-router';
 import React from 'react';
 import CustomInput from '@/app/components/CustomInput';
 import CustomButton from '@/app/components/CustomButton';
+import { FontAwesome } from '@expo/vector-icons';
+import { SelectList } from 'react-native-dropdown-select-list';
 import { useForm } from 'react-hook-form';
+const data = [
+    { key: '1', value: 'Jammu & Kashmir' },
+    { key: '2', value: 'Gujrat' },
+    { key: '3', value: 'Maharashtra' },
+    { key: '4', value: 'Goa' },
+];
 
 const FormOneScreen = () => {
+    const [selected, setSelected] = React.useState('');
     const { control, handleSubmit } = useForm({
         defaultValues: { username: '' },
     });
@@ -43,6 +52,45 @@ const FormOneScreen = () => {
                             This text box will expand to the width and then
                             scroll if the value is too long.
                         </Text>
+                    </View>
+                </View>
+                <View style={styles.inputRow}>
+                    <View style={styles.inputContentRow}>
+                        <SelectList
+                            // onSelect={() => alert(selected)}
+                            setSelected={setSelected}
+                            fontFamily='roboto'
+                            data={data}
+                            arrowicon={
+                                <View style={{ paddingHorizontal: 10 }}>
+                                    <FontAwesome
+                                        name='chevron-down'
+                                        size={12}
+                                        color={'black'}
+                                    />
+                                </View>
+                            }
+                            searchicon={
+                                <View style={{ paddingHorizontal: 5 }}>
+                                    <FontAwesome
+                                        name='search'
+                                        size={12}
+                                        color={'black'}
+                                    />
+                                </View>
+                            }
+                            search={true}
+                            boxStyles={{
+                                borderRadius: 0,
+                                backgroundColor: 'yellow',
+
+                                paddingHorizontal: 10,
+                            }} //override default styles
+                            defaultOption={{
+                                key: '1',
+                                value: 'Jammu & Kashmir',
+                            }} //default selected option
+                        />
                     </View>
                 </View>
                 <View style={styles.inputRow}>
