@@ -28,33 +28,60 @@ const FormOneScreen = () => {
         <SafeAreaView style={styles.screen}>
             <Stack.Screen options={{ headerBackTitle: 'Back' }} />
             <View style={{ padding: 10 }}>
-                <Text style={styles.title}>react-hook-form example</Text>
+                <Text style={styles.title}>
+                    react-native-dropdown-select-list example
+                </Text>
             </View>
             <View style={styles.formContainer}>
                 <View style={styles.introContainer}>
                     <Text style={styles.medText}>
-                        This is a sample of some controls
+                        This dropdown feature comes from
+                        www.npmjs.com/package/react-native-dropdown-select-list
+                        it is highly configurable, but does have annoying
+                        feature where it expands the view when the drop down is
+                        selected.
                     </Text>
                 </View>
+
                 <View style={styles.inputRow}>
-                    <View style={styles.inputContent}>
-                        <Text>Simple Text Box</Text>
-                        <CustomInput
-                            name='username'
-                            control={control}
-                            placeholder='Enter text here'
-                            rules={{
-                                required: 'Username is required',
-                            }}
-                            secureTextEntry={false}
+                    <View style={styles.inputContentRow}>
+                        <SelectList
+                            // onSelect={() => alert(selected)}
+                            setSelected={setSelected}
+                            fontFamily='roboto'
+                            data={data}
+                            arrowicon={
+                                <View style={{ paddingHorizontal: 10 }}>
+                                    <FontAwesome
+                                        name='chevron-down'
+                                        size={12}
+                                        color={'black'}
+                                    />
+                                </View>
+                            }
+                            searchicon={
+                                <View style={{ paddingHorizontal: 5 }}>
+                                    <FontAwesome
+                                        name='search'
+                                        size={12}
+                                        color={'black'}
+                                    />
+                                </View>
+                            }
+                            search={true}
+                            boxStyles={{
+                                borderRadius: 0,
+                                backgroundColor: 'yellow',
+
+                                paddingHorizontal: 10,
+                            }} //override default styles
+                            defaultOption={{
+                                key: '1',
+                                value: 'Jammu & Kashmir',
+                            }} //default selected option
                         />
-                        <Text style={styles.medText}>
-                            This text box will expand to the width and then
-                            scroll if the value is too long.
-                        </Text>
                     </View>
                 </View>
-
                 <View style={styles.inputRow}>
                     <View style={styles.inputContentRow}>
                         <View style={{ flex: 1 }}>
@@ -91,7 +118,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'robotoBold',
-        fontSize: 26,
+        fontSize: 24,
         textAlign: 'center',
     },
     text: {
@@ -105,6 +132,7 @@ const styles = StyleSheet.create({
     },
     introContainer: {
         padding: 10,
+        alignItems: 'center',
     },
     inputRow: {
         flexDirection: 'row',
