@@ -17,23 +17,19 @@ const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Stack.Screen options={{ title: 'Main Screen' }} />
-            <View>
+            {/* <View>
                 <Image
                     source={require('@assets/images/DoItNow.jpg')}
                     style={{ height: 300, aspectRatio: 1 / 1 }}
                 />
+            </View> */}
+            <View>
+                <Text style={styles.title}>Virtual Event App</Text>
             </View>
             <View>
-                <Text style={styles.title}>Great Start!!</Text>
+                <Text style={styles.text}>From NotJustDev</Text>
             </View>
-            <View>
-                <Text style={styles.text}>This has...</Text>
-                <Text style={styles.item}>Expo Typescript Aliases</Text>
-                <Text style={styles.item}>src/app starting folder</Text>
-                <Text style={styles.item}>Google Fonts</Text>
-                <Text style={styles.item}>Reduxjs.Toolkit</Text>
-            </View>
-            <View style={styles.reduxContainer}>
+            {/* <View style={styles.reduxContainer}>
                 <View style={styles.inventoryContainer}>
                     <Text style={{ fontSize: 12 }}>Inventory (cakes): </Text>
                     <Text style={{ fontFamily: 'robotoBoldItalic' }}>
@@ -52,8 +48,9 @@ const HomeScreen = () => {
                         {cakes.status && pies.status}
                     </Text>
                 </View>
-            </View>
-            <Link href={'test'} asChild>
+            </View> */}
+
+            {/* <Link href={'test'} asChild>
                 <Pressable>
                     <View style={styles.button}>
                         <Text style={styles.buttonText}>Test Redux</Text>
@@ -78,6 +75,13 @@ const HomeScreen = () => {
                 <Pressable>
                     <View style={styles.button}>
                         <Text style={styles.buttonText}>Classes</Text>
+                    </View>
+                </Pressable>
+            </Link> */}
+            <Link href={'VirtualEvent'} asChild>
+                <Pressable>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Virtual Event</Text>
                     </View>
                 </Pressable>
             </Link>
