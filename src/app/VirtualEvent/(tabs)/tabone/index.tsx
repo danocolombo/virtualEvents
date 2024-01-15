@@ -65,7 +65,7 @@ const TabOneScreen = () => {
                 </View>
             </View>
 
-            <StatusBar style='auto' />
+            <StatusBar />
         </SafeAreaView>
     );
 };

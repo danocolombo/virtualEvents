@@ -4,7 +4,6 @@ import { Stack, useNavigation } from 'expo-router';
 
 const ModalScreen = () => {
     const navigation = useNavigation();
-    const isPresented = navigation.canGoBack();
 
     return (
         <View

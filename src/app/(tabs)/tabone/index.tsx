@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import React from 'react';
 import { Link, Stack } from 'expo-router';
-import { useAppSelector } from '@/hooks';
+// import { useAppSelector } from '@/hooks';
 
-const TabTwoScreen = () => {
+const TabOneScreen = () => {
     const APP_NAME = 'VirtualEvent';
     return (
         <SafeAreaView style={styles.container}>
@@ -30,7 +30,7 @@ const TabTwoScreen = () => {
             >
                 <View style={{ paddingHorizontal: 25 }}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.title}>Tab Two</Text>
+                        <Text style={styles.title}>Tab One</Text>
                     </View>
                 </View>
             </View>
@@ -40,7 +40,7 @@ const TabTwoScreen = () => {
     );
 };
 
-export default TabTwoScreen;
+export default TabOneScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontFamily: 'robotoBold',
+        fontFamily: 'RobotoBold',
         fontSize: 30,
         color: '#010101',
     },

@@ -9,8 +9,8 @@ import {
     Pressable,
 } from 'react-native';
 import { useAppSelector } from '@/hooks';
-import { getCakesState } from '@/features/cakes/cakesSlice';
-import { getPiesState } from '@/features/pies/piesSlice';
+import { getCakesState } from '@features/cakes/cakesSlice';
+import { getPiesState } from '@features/pies/piesSlice';
 const HomeScreen = () => {
     const pies = useAppSelector(getPiesState);
     const cakes = useAppSelector(getCakesState);
