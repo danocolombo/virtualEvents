@@ -25,12 +25,19 @@ const TabOneScreen = () => {
 
         return (
             <View>
-                <Pressable
-                    style={[styles.item, { height: reservation.height }]}
-                    onPress={() => Alert.alert(reservation.name)}
+                <Link
+                    href={`/VirtualEvent/tabone/detailModal?reservation=${reservation.id}`}
+                    asChild
                 >
-                    <Text style={{ fontSize, color }}>{reservation.name}</Text>
-                </Pressable>
+                    <Pressable
+                        style={[styles.item, { height: reservation.height }]}
+                        // onPress={() => NavigationPr}
+                    >
+                        <Text style={{ fontSize, color }}>
+                            {reservation.name}
+                        </Text>
+                    </Pressable>
+                </Link>
             </View>
         );
     };
@@ -80,7 +87,7 @@ const TabOneScreen = () => {
                     renderItem={renderItem}
                     renderEmptyDate={renderEmptyItem}
                     selected={today}
-                    showOnlySelectedDayItems
+                    // showOnlySelectedDayItems
                 />
             </View>
 
