@@ -6,8 +6,9 @@ import {
     StyleSheet,
     useWindowDimensions,
     ScrollView,
+    Pressable,
 } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, useNavigation, useRouter } from 'expo-router';
 import Logo2 from './logo.png';
 import Logo from '@images/logo.png';
 import CustomInput from '@components/CustomInput';
@@ -20,7 +21,8 @@ const EMAIL_REGEX =
 
 const SignInScreen = () => {
     const [loading, setLoading] = useState(false);
-
+    const router = useRouter();
+    const navigation = useNavigation();
     const { control, handleSubmit } = useForm();
 
     const onSignInPressed = async (data) => {
@@ -40,11 +42,8 @@ const SignInScreen = () => {
     };
 
     const onSignUpPress = () => {
-        <Link href={'SignUpScreen'} asChild>
-            <View>
-                <Text>Signup</Text>
-            </View>
-        </Link>;
+        console.log('yep');
+        router.replace('./SignUpScreen');
     };
 
     return (
@@ -97,7 +96,6 @@ const SignInScreen = () => {
                 />
 
                 <SocialSignInButtons />
-
                 <CustomButton
                     text="Don't have an account? Create one"
                     onPress={onSignUpPress}

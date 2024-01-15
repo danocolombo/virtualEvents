@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { store } from '@/store';
@@ -41,6 +41,8 @@ export default function RootLayout() {
     if (!fontsLoaded) {
         return null;
     }
+    //const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const isAuthenticated = true;
     return (
         <Provider store={store}>
             <Stack
