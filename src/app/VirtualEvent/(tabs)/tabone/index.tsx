@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import { Link, Stack, useNavigation, useRouter } from 'expo-router';
 import { useAppSelector } from '@/hooks';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Agenda, AgendaEntry } from 'react-native-calendars';
 import events from '@assets/data/events.json';
 const TabOneScreen = () => {
@@ -66,11 +66,11 @@ const TabOneScreen = () => {
                         />
                     ),
                     headerRight: () => (
-                        <Link href='/VirtualEvent/tabone/modal' asChild>
-                            <Ionicons
-                                name='caret-up'
+                        <Link href='/VirtualEvent/tabone/UserScreen' asChild>
+                            <FontAwesome
+                                name='users'
                                 size={24}
-                                color='black'
+                                color='dimgrey'
                                 style={{ marginRight: 16 }} // Adjust the styling as needed
                             />
                         </Link>

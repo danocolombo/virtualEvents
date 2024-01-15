@@ -15,6 +15,10 @@ const TabOneLayout = () => {
                 name='detailModal'
                 options={{ presentation: 'modal', headerTitle: 'Details' }}
             />
+            <Stack.Screen
+                name='UserScreen'
+                options={{ presentation: 'modal', headerTitle: 'Users Screen' }}
+            />
         </Stack>
     );
 };

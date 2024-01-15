@@ -1,18 +1,13 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { Stack, useLocalSearchParams, useNavigation } from 'expo-router';
-import { printObject } from '@/utils/fortson';
 import event from '@assets/data/event.json';
-import allEvents from '@assets/data/events.json';
 import users from '@assets/data/users.json';
 import { AntDesign } from '@expo/vector-icons';
 import CustomButton from '@/app/components/CustomButton';
 const ModalScreen = () => {
     const { reservation } = useLocalSearchParams();
     console.log('🚀 ~ ModalScreen ~ reservation:', reservation);
-    // const thisReservation = allEvents;
-    // console.log('🚀 ~ ModalScreen ~ thisReservation:', thisReservation);
-    const navigation = useNavigation();
     const onAdd = () => {};
     const displayedUsers = users.slice(0, 5);
     return (
