@@ -85,6 +85,13 @@ const HomeScreen = () => {
                     </View>
                 </Pressable>
             </Link>
+            <Link href={'/AuthScreens/SignInScreen'} asChild>
+                <Pressable>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Auth Sample</Text>
+                    </View>
+                </Pressable>
+            </Link>
             <StatusBar style='auto' />
         </SafeAreaView>
     );
