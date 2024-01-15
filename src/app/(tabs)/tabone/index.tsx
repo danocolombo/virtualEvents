@@ -24,8 +24,8 @@ const TabOneScreen = () => {
             <View
                 style={{
                     flex: 1,
-                    flexDirection: 'column',
-                    justifyContent: 'center',
+                    // flexDirection: 'column',
+                    // justifyContent: 'center',
                 }}
             >
                 <View style={{ paddingHorizontal: 25 }}>

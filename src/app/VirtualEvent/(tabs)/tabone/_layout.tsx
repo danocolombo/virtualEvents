@@ -5,7 +5,7 @@ const TabOneLayout = () => {
         <Stack>
             <Stack.Screen
                 name='index'
-                options={{ headerShown: false, headerTitle: 'Tab 1' }}
+                options={{ headerShown: false, headerTitle: 'Agenda' }}
             />
             <Stack.Screen
                 name='modal'
