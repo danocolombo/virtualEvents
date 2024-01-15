@@ -15,20 +15,20 @@ export default function TabsLayout() {
                 name='tabone'
                 options={{
                     headerShown: false,
-                    title: 'One',
-                    tabBarLabel: 'Tab 1',
+                    title: 'Events',
+                    tabBarLabel: 'Events',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name='list' size={24} color='black' />
+                        <FontAwesome name='calendar' size={24} color='black' />
                     ),
                 }}
             />
             <Tabs.Screen
                 name='tabtwo'
                 options={{
-                    title: 'Two',
-                    tabBarLabel: 'Tab 2',
+                    title: 'Profile',
+                    tabBarLabel: 'Profile',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name='calendar' size={24} color='black' />
+                        <FontAwesome name='user' size={24} color='black' />
                     ),
                 }}
             />
