@@ -14,6 +14,7 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name='tabone'
                 options={{
+                    headerShown: false,
                     title: 'One',
                     tabBarLabel: 'Tab 1',
                     tabBarIcon: ({ color, size }) => (

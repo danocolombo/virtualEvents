@@ -1,4 +1,5 @@
 import {
+    Button,
     Pressable,
     SafeAreaView,
     StatusBar,
@@ -7,18 +8,47 @@ import {
     View,
 } from 'react-native';
 import React from 'react';
-import { Link, Stack } from 'expo-router';
+import { Link, Stack, useNavigation, useRouter } from 'expo-router';
 import { useAppSelector } from '@/hooks';
+import { Ionicons } from '@expo/vector-icons';
 
 const TabOneScreen = () => {
-    const APP_NAME = 'VirtualEvent';
+    const router = useRouter();
+    const navigate = useNavigation();
+    const APP_NAME = 'taboneIndex';
     return (
         <SafeAreaView style={styles.container}>
             <Stack.Screen
                 options={{
-                    headerShown: false,
+                    headerShown: true,
                     title: APP_NAME,
-                    headerBackTitle: 'Main',
+                    headerLeft: () => (
+                        <Ionicons
+                            name='caret-back'
+                            size={24}
+                            color='black'
+                            onPress={() => {
+                                navigate.goBack();
+                            }}
+                            style={{ marginRight: 16 }} // Adjust the styling as needed
+                        />
+                    ),
+                    headerRight: () => (
+                        <Link href='/VirtualEvent/tabone/modal' asChild>
+                            <Button title='Open Modal' />
+                        </Link>
+                        // <Ionicons
+                        //     name='caret-up-outline'
+                        //     size={24}
+                        //     color='black'
+                        //     onPress={(e) => {
+                        //         e.preventDefault();
+
+                        //         router.push('modal');
+                        //     }}
+                        //     style={{ marginRight: 16 }} // Adjust the styling as needed
+                        // />
+                    ),
                 }}
             />
             <View

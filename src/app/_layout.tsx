@@ -45,6 +45,7 @@ export default function RootLayout() {
         <Provider store={store}>
             <Stack
                 screenOptions={{
+                    headerShown: false,
                     headerStyle: { backgroundColor: 'lightgrey' },
                 }}
             >
